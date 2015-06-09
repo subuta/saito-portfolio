@@ -1,0 +1,8 @@
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+dist/
+saito-portfolio.iml
+saito-portfolio.ipr
+saito-portfolio.iws
