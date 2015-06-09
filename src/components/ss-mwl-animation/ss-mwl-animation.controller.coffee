@@ -1,16 +1,22 @@
 app = angular.module "saitoPortfolio"
 
 app.controller "ssMwlAnimationCtrl", ($scope) ->
-  console.log 'im from hell!'
+  console.log 'im from controller'
 
-app.directive 'ssMwlAnimation', ($timeout) ->
+#　mwl = my wonderful life :)
+app.directive 'ssMwlAnimation', ($timeout, TimelineLite, TweenLite) ->
   return {
     templateUrl: 'components/ss-mwl-animation/ss-mwl-animation.html'
     restrict: 'E'
+    replace: true
     scope: {
       duration: '@'
     }
     controller: 'ssMwlAnimationCtrl'
     compile: (elem, attr) ->
-      console.log 'compile!'
+      handleOnComplete = () =>
+        console.log 'animated!'
+      tl = new TimelineLite(onComplete: handleOnComplete)
+      tl.add( TweenLite.to(elem, 1, {right:100}) )
+      tl.play()
   }
